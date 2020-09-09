@@ -1,8 +1,13 @@
 import-module .\OutlookTools.psm1
 
 # Config
-$city = 'GB-London'
+## Location 
+$city = 'GB-London' # City code as defined at https://github.com/hebcal/dotcom/blob/master/hebcal.com/dist/cities2.txt
+
+## Numbe of minutes required before shabbat (travel home time + preparation)
 $minutesRequiredBeforeShabbat = 120
+
+# Dates to insert
 $year = 2020
 $months = 9, 10, 11, 12
 
