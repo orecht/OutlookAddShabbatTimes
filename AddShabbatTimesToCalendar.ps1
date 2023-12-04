@@ -1,15 +1,29 @@
 import-module .\OutlookTools.psm1
+param (
+    ## Location 
+    [Parameter(Mandatory=$false, HelpMessage="City code as defined at https://github.com/hebcal/dotcom/blob/master/hebcal.com/dist/cities2.txt")]
+    $city = 'GB-London',
 
-# Config
-## Location 
-$city = 'GB-London' # City code as defined at https://github.com/hebcal/dotcom/blob/master/hebcal.com/dist/cities2.txt
+    ## Number of minutes required before shabbat (travel home time + preparation)
+    [Parameter(Mandatory=$false, HelpMessage="Number of minutes required before shabbat (travel home time + preparation) (default 60 min)")]
+    $minutesRequiredBeforeShabbat = 60,
 
-## Numbe of minutes required before shabbat (travel home time + preparation)
-$minutesRequiredBeforeShabbat = 120
+    # Dates to insert
+    [Parameter(Mandatory=$false, HelpMessage="Year")]
+    $year = (Get-Date).Year,
+    [Parameter(Mandatory=$false, HelpMessage="Months")]
+    $months = (Get-Date -Format "MM")
+)
 
-# Dates to insert
-$year = 2020
-$months = 9, 10, 11, 12
+function Show-Usage {
+    Write-Host "Usage: AddShabbatTimesToCalendar.ps1 [-city <city>] [-minutesRequiredBeforeShabbat <minutes>] [-year <year>] [-months <months>]"
+    Write-Host ""
+    Write-Host "Parameters:"
+    Write-Host "  -city                      City code as defined at https://github.com/hebcal/dotcom/blob/master/hebcal.com/dist/cities2.txt"
+    Write-Host "  -minutesRequiredBeforeShabbat   Number of minutes required before shabbat (travel home time + preparation) (default 60 min))"
+    Write-Host "  -year                      Year"
+    Write-Host "  -months                    Months (comma-separated of month numbers, e.g. 01,02,03 for Jan, Feb, Mar)"
+}
 
 # Code
 foreach ($month in $months)
@@ -30,3 +44,4 @@ foreach ($month in $months)
         
     }
 }
+
