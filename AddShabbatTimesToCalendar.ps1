@@ -1,4 +1,3 @@
-import-module .\OutlookTools.psm1
 param (
     ## Location 
     [Parameter(Mandatory=$false, HelpMessage="City code as defined at https://github.com/hebcal/dotcom/blob/master/hebcal.com/dist/cities2.txt")]
@@ -26,6 +25,8 @@ function Show-Usage {
 }
 
 # Code
+import-module .\OutlookTools.psm1
+
 foreach ($month in $months)
 {
     $url = "https://www.hebcal.com/hebcal?v=1&cfg=json&c=on&m=0&year=$year&month=$month&city=$city"
